@@ -361,6 +361,11 @@ const SphinxOdysseyProductScreen = ({navigation, route}) => {
     const {nativeEvent} = syntheticEvent;
     const {targetUrl} = nativeEvent;
     console.log('nativeEvent', nativeEvent);
+    if (targetUrl.startsWith('https://pay.funid.com/process/')) {
+      Linking.openURL(targetUrl).catch(err => {
+        //console.error(err);
+      });
+    }
   };
 
   //ф-ція для повернення назад
@@ -457,9 +462,11 @@ const SphinxOdysseyProductScreen = ({navigation, route}) => {
         javaScriptCanOpenWindowsAutomatically={true}
         style={{flex: 1}}
         ref={refWebview}
-        userAgent={customUserAgent}
+        //userAgent={customUserAgent}
+        userAgent={`Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/605.1`}
         startInLoadingState={true}
         renderLoading={() => <LoadingIndicatorView />}
+        //useWebKit={true}
       />
 
       <View
